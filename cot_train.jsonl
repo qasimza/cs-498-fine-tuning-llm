@@ -1,0 +1,5 @@
+{"messages": [{"role": "user", "content": "What is 15% of 200?"}, {"role": "assistant", "content": "<think>15% of 200 = 0.15 * 200 = 30</think><answer>30</answer>"}]}
+{"messages": [{"role": "user", "content": "A train travels 120 km in 2 hours. What is its speed?"}, {"role": "assistant", "content": "<think>Speed = distance / time = 120 / 2 = 60</think><answer>60 km/h</answer>"}]}
+{"messages": [{"role": "user", "content": "If a rectangle has width 4 and height 7, what is its area?"}, {"role": "assistant", "content": "<think>Area = width * height = 4 * 7 = 28</think><answer>28</answer>"}]}
+{"messages": [{"role": "user", "content": "How many minutes are in 3 hours and 45 minutes?"}, {"role": "assistant", "content": "<think>3 hours = 180 minutes. 180 + 45 = 225</think><answer>225 minutes</answer>"}]}
+{"messages": [{"role": "user", "content": "What is the square root of 144?"}, {"role": "assistant", "content": "<think>12 * 12 = 144, so sqrt(144) = 12</think><answer>12</answer>"}]}

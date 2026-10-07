@@ -1,0 +1,12 @@
+[project]
+name = "cs-498"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dotenv>=0.9.9",
+    "tinker>=0.32.0",
+    "torch>=2.14.1",
+    "transformers>=5.19.0",
+]
