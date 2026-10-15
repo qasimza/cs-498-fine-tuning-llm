@@ -69,7 +69,15 @@ def compute_reward(response: str, correct_tool: str) -> float:
     arg = arg[0]
 
     if tool == "" or arg == "":
-        return 0
+        return 0.0
+    
+    if tool == correct_tool:
+        return 3.0
+    
+    if tool in VALID_TOOLS:
+        return 2.0
+    
+    return 1.0
 
 
 def compute_advantages(rewards: list) -> list:
