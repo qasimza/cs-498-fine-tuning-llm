@@ -50,7 +50,6 @@ def make_grpo_datum(prompt_tokens, resp_tokens, advantage):
         loss_fn_inputs=dict(weights=weights[1:], target_tokens=tokens[1:]),
     )
 
-# ── TODO 1 ───────────────────────────────────────────────────────────────────
 def compute_reward(response: str, correct_tool: str) -> float:
     """
     Return:
@@ -72,11 +71,7 @@ def compute_reward(response: str, correct_tool: str) -> float:
     if tool == "" or arg == "":
         return 0
 
-    
 
-    pass
-
-# ── TODO 2 ───────────────────────────────────────────────────────────────────
 def compute_advantages(rewards: list) -> list:
     """
     GRPO: normalize rewards to zero mean, unit population std.
