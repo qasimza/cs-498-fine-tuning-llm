@@ -1,11 +1,17 @@
 import re
 import tinker
 from tinker import types
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("TINKER_API_KEY")
 
 # ── Setup ────────────────────────────────────────────────────────────────────
 service_client  = tinker.ServiceClient()
 training_client = service_client.create_lora_training_client(
-    base_model="Qwen/Qwen3-8B"
+    base_model="Qwen/Qwen3-8B",
+
 )
 tokenizer = training_client.get_tokenizer()
 
@@ -53,7 +59,21 @@ def compute_reward(response: str, correct_tool: str) -> float:
       1.0  if both tags present but tool not in VALID_TOOLS
       0.0  otherwise (missing tags, empty tool, empty arg)
     """
-    # YOUR CODE HERE
+    tool = re.findall(r"<tool>(.*?)</tool>", response)
+    if len(tool) == 0: 
+        return 0.0
+    tool = tool[0]
+
+    arg = re.findall(r"<arg>(.*?)</arg>", response)
+    if len(arg) == 0: 
+        return 0.0
+    arg = arg[0]
+
+    if tool == "" or arg == "":
+        return 0
+
+    
+
     pass
 
 # ── TODO 2 ───────────────────────────────────────────────────────────────────
@@ -62,8 +82,18 @@ def compute_advantages(rewards: list) -> list:
     GRPO: normalize rewards to zero mean, unit population std.
     Return all 0.0s if std < 1e-8. Raise ValueError if rewards is empty.
     """
-    # YOUR CODE HERE
-    pass
+    if len(rewards) == 0:
+        raise ValueError("Rewards must not be empty")
+
+    n = len(rewards)
+    mean = sum(rewards) / n
+    variance = sum((reward - mean) ** 2 for reward in rewards) / n
+    std = variance ** 0.5
+
+    if std < 1e-8:
+        return [0.0] * n
+
+    return [(reward - mean) / std for reward in rewards]
 
 # ── Training loop (provided) ─────────────────────────────────────────────────
 G         = 4
